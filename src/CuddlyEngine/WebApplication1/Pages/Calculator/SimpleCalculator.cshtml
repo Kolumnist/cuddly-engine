@@ -1,0 +1,101 @@
+﻿@page 
+@model CalculatorModel
+@{
+	ViewData["Title"] = "SimpleCalculator";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+	<table class="table">
+		<tr>
+			<th>
+				<h3 id="calculationLabel"> </h3>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				<input type="button" onclick="changeCalculation(1)" value="1" />
+				<input type="button" onclick="changeCalculation(2)" value="2" />
+				<input type="button" onclick="changeCalculation(3)" value="3" />
+			</td>
+			<td>
+				<button>DEL</button>
+				<button>CLE</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="button" onclick="changeCalculation(4)" value="4" />
+				<input type="button" onclick="changeCalculation(5)" value="5" />
+				<input type="button" onclick="changeCalculation(6)" value="6" />
+			</td>
+			<td>
+				<input type="button" onclick="changeCalculation('*')" value="*" />
+				<input type="button" onclick="changeCalculation('/')" value="/" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="button" onclick="changeCalculation(7)" value="7" />
+				<input type="button" onclick="changeCalculation(8)" value="8" />
+				<input type="button" onclick="changeCalculation(9)" value="9" />
+			</td>
+			<td>
+				<input type="button" onclick="changeCalculation('+')" value="+" />
+				<input type="button" onclick="changeCalculation('-')" value="-" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button>(-)</button>
+				<input type="button" onclick="changeCalculation(0)" value="0" />
+				<button>,</button>
+			</td>
+			<td>
+				<input type="button" onclick="calculate()" value="=" />
+			</td>
+		</tr>
+	</table>
+</form>
+
+<script>
+	function changeCalculation(symbol) {
+		
+		const label = document.getElementById("calculationLabel");
+		
+		//Some ifs here
+		label.innerText += symbol;
+	}
+</script>
+
+<script>
+	function calculate() {
+		const label = document.getElementById("calculationLabel").innerText;
+		console.log(label);
+		const numbers = [];
+		const signs = [];
+		let result = 0;
+
+		let a_length = 0;
+		for (let i = 0; i < label.length; i++) {
+			//if (!(/^\d$/.test(label.charAt(i))) {
+				//signs[a_length] = label.charAt(i);
+				//a_length++;
+				//continue;
+			//}
+			//numbers[a_length] += label.innerText.charAt(i);
+		}
+		//console.log(`This is every number $(numbers) and every sign $("signs")`);
+
+		/*let signIndex = 0;
+
+		while (signs.length > 0) {
+			signIndex = signs.lastIndexOf["*"];
+			result += numbers[signIndex] * numbers[signIndex + 1];
+			delete signs[signIndex];
+		}
+		console.log(result);*/
+	}
+</script>
+
+<p>This site is still under construction, last updated @ViewData["Timestamp"]</p>
