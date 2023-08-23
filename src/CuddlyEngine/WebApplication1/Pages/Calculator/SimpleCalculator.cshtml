@@ -69,32 +69,54 @@
 </script>
 
 <script>
-	function calculate() {
+	async function calculate() {
 		const label = document.getElementById("calculationLabel").innerText;
-		console.log(label);
 		const numbers = [];
-		const signs = [];
-		let result = 0;
-
-		let a_length = 0;
+		let signs = "";
+		let currentNumber = "";
+		
 		for (let i = 0; i < label.length; i++) {
-			//if (!(/^\d$/.test(label.charAt(i))) {
-				//signs[a_length] = label.charAt(i);
-				//a_length++;
-				//continue;
-			//}
-			//numbers[a_length] += label.innerText.charAt(i);
-		}
-		//console.log(`This is every number $(numbers) and every sign $("signs")`);
+			if (!(label[i] >= '0' && label[i] <= '9') && label[i] != ',') {
+				signs += label[i];
+				numbers.push(Number(currentNumber));
 
-		/*let signIndex = 0;
+				currentNumber = "";
+				continue;
+			}
+			currentNumber += label[i];
+		}
+		numbers.push(Number(currentNumber));
+		console.log(`This is every number ${numbers} and every sign ${signs}`);
+
+		document.getElementById("calculationLabel").innerText = await getResult(numbers, signs);
+	}
+
+	async function getResult(numbers, signs) {
+		let result = 0;
+		let signIndex = 0;
 
 		while (signs.length > 0) {
-			signIndex = signs.lastIndexOf["*"];
-			result += numbers[signIndex] * numbers[signIndex + 1];
-			delete signs[signIndex];
+
+			if (signs.includes("*")) {
+				signIndex = signs.indexOf("*");
+				result = numbers[signIndex] * numbers[signIndex + 1];
+			} else if (signs.includes("/")) {
+				signIndex = signs.indexOf("/");
+				result = numbers[signIndex] / numbers[signIndex + 1];
+			} else if (signs.includes("+")) {
+				signIndex = signs.indexOf("+");
+				result = numbers[signIndex] + numbers[signIndex + 1];
+			} else if (signs.includes("-")) {
+				signIndex = signs.indexOf("-");
+				result = numbers[signIndex] - numbers[signIndex + 1];
+			}
+			numbers[signIndex + 1] = result;
+			signs = signs.replace(signs.substring(signIndex, signIndex + 1), "");
+			numbers.splice(signIndex, 1);
+			//console.log(`This ${result} = ${numbers[signIndex]} + ${numbers[signIndex + 1]}`)
+			//console.log("Remaining Signs: ", signs);
 		}
-		console.log(result);*/
+		return result;
 	}
 </script>
 

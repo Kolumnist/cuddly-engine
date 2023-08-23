@@ -12,6 +12,7 @@ namespace WebApplication1.Pages.Calculator
         {
             string dateTime = DateTime.Now.ToString("d", new CultureInfo("de-DE"));
             ViewData["TimeStamp"] = dateTime;
+            Page();
         }
 	}
 }
