@@ -1,0 +1,20 @@
+
+<form #registerForm="ngForm" (ngSubmit)="onClickSubmit(user.username)">
+  <h2>Registration Form</h2>
+
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" class="form-control" id="username" required
+           [(ngModel)]="user.username" name="username" />
+  </div>
+
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" class="form-control" id="password" required
+           [(ngModel)]="user.password" name="password" />
+  </div>
+
+  <div class="btn-primary">
+    <input type="submit" class="form-control" value="submit" />
+  </div>
+</form>
